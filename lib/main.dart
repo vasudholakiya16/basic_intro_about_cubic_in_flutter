@@ -1,3 +1,5 @@
+import 'dart:math' as math show Random;
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,6 +9,13 @@ void main() {
     debugShowCheckedModeBanner: false,
     home: const HomePage(),
   ));
+}
+
+const name = ['abc', 'def', 'ghi'];
+
+// we nead to peack a rendom name
+extension RandomElement<T> on Iterable<T> {
+  T getRandomElement() => elementAt(math.Random().nextInt(length));
 }
 
 class HomePage extends StatelessWidget {
