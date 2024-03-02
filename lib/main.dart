@@ -25,13 +25,34 @@ class NamesCubit extends Cubit<String?> {
 
   // allow picking a rendom name in cubit
   void pickRandomName() => emit(names.getRandomElement());
+
   // void pickRandomName() {
   //  _state= 'aaa'; // not apply because of _state is a private class and it allow to get property only thae....
   // };
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+// defint the cubit in your home page state
+  late final NamesCubit cubit;
+  //initialize the cubit in initState
+  @override
+  void initState() {
+    super.initState();
+    cubit = NamesCubit();
+  }
+
+  @override
+  void dispose() {
+    cubit.close(); // dont forgate to close the cubit in dispose()
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
